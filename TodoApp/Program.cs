@@ -15,7 +15,7 @@ namespace TodoApp
             using (var scope = host.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<TodoAppDbContext>();
-                db.Database.Migrate();
+                db.Migrate();
             }
 
             host.Run();

@@ -33,5 +33,18 @@ namespace TodoApp.Data.Database
             optionsBuilder.UseLoggerFactory(_loggerFactory);
             optionsBuilder.LogTo(message => _logger.LogInformation(message), LogLevel.Information);
         }
+
+        public void Migrate()
+        {
+            try
+            {
+                _logger.LogInformation("checking migration...");
+                base.Database.Migrate();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogCritical(ex, "Problem occurred while running the migration check.");
+            }            
+        }
     }
 }
