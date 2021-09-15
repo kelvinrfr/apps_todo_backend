@@ -46,9 +46,9 @@ namespace TodoApp.Data.Database
                 connection = connectionStringBuilder.ToString();
             }
             
+            _logger.LogDebug("using custom connection string as {0}", connection);
             optionsBuilder.UseNpgsql(connection);
             optionsBuilder.UseLoggerFactory(_loggerFactory);
-            optionsBuilder.LogTo(message => _logger.LogInformation(message), LogLevel.Information);
         }
 
         public void Migrate()
