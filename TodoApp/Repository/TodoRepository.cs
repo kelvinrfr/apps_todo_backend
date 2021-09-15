@@ -49,7 +49,7 @@ namespace TodoApp.Repository
             await _context.TodoItems.AddAsync(item);
 
             _logger.LogDebug("adding todo item '{description}'", item.Description);
-            result = _context.SaveChanges() > 0;
+            result = await _context.SaveChangesAsync() > 0;
 
             return result;
         }
@@ -72,9 +72,9 @@ namespace TodoApp.Repository
 
             _context.TodoItems.Update(entity);
 
-            _logger.LogDebug("updating item '{id}'...");
+            _logger.LogDebug("updating item '{id}'...", id);
             var affected = _context.SaveChanges();
-            _logger.LogDebug("item '{id}' updated");
+            _logger.LogDebug("item '{id}' updated", id);
 
             if (affected == 0)
             {
@@ -100,9 +100,9 @@ namespace TodoApp.Repository
             }
             _context.TodoItems.Remove(item);
 
-            _logger.LogDebug("removing item '{id}'...");
-            var affected = _context.SaveChanges();
-            _logger.LogDebug("item '{id}' removed");
+            _logger.LogDebug("removing item '{id}'...", id);
+            var affected = await _context.SaveChangesAsync();
+            _logger.LogDebug("item '{id}' removed", id);
 
             if (affected == 0)
             {

@@ -3,6 +3,7 @@ using TodoApp.Data.Database;
 using TodoApp.Service;
 using TodoApp.Repository;
 using Microsoft.OpenApi.Models;
+using TodoApp.HealthCheck;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -15,9 +16,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static void ConfigureHealthChecks(this IServiceCollection services)
         {
-            services.AddHealthChecks();
+            services.AddHealthChecks()
+                .AddCheck<DatabaseHealthCheck>(nameof(DatabaseHealthCheck));
         }
-
+        
         public static void ConfigureCors(this IServiceCollection services, TodoAppConfiguration configuration)
         {
             services.AddCors(setup =>
