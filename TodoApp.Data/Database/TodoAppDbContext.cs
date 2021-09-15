@@ -1,6 +1,8 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Npgsql;
 using TodoApp.Data.Models;
 
 namespace TodoApp.Data.Database
@@ -28,8 +30,23 @@ namespace TodoApp.Data.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {            
             var connection = _configuration.GetConnectionString("TodoAppDbConnection");
-            optionsBuilder.UseNpgsql(connection);
+            if (connection == null)
+            {
+                var dbSocketDir = _configuration.GetValue<string>("DB_SOCKET_PATH") ?? "/cloudsql";
+                var instanceConnectionName = _configuration.GetValue<string>("INSTANCE_CONNECTION_NAME");
+                var connectionStringBuilder = new NpgsqlConnectionStringBuilder()
+                {
+                    SslMode = SslMode.Disable,
 
+                    Host = $"{dbSocketDir}/{instanceConnectionName}",
+                    Username = _configuration.GetValue<string>("DB_USER"),
+                    Password = _configuration.GetValue<string>("DB_PASS"),
+                    Database = _configuration.GetValue<string>("DB_NAME"),
+                };
+                connection = connectionStringBuilder.ToString();
+            }
+            
+            optionsBuilder.UseNpgsql(connection);
             optionsBuilder.UseLoggerFactory(_loggerFactory);
             optionsBuilder.LogTo(message => _logger.LogInformation(message), LogLevel.Information);
         }
