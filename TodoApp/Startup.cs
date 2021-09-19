@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TodoApp.Configuration;
+using TodoApp.Web.Controllers.v1.External;
 
 namespace TodoApp
 {
@@ -15,11 +16,12 @@ namespace TodoApp
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpClient<ExternalController>();
             
             var todoAppConfiguration = new TodoAppConfiguration();
             Configuration.Bind(todoAppConfiguration);

@@ -5,6 +5,7 @@ using TodoApp.Repository;
 using Microsoft.OpenApi.Models;
 using TodoApp.HealthCheck;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServiceCollectionExtensions

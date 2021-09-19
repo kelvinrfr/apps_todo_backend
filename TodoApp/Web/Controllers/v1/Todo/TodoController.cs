@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using TodoApp.Service;
 using TodoApp.Web.Models;
 
-namespace TodoApp.Web.Controllers.v1
+namespace TodoApp.Web.Controllers.v1.todo
 {
     [ApiController]
     [Route("v1/todo")]
