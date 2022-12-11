@@ -13,7 +13,7 @@ using TodoApp.WebApi.Controllers.Todo.v1.GetSingle;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
 {
-    public abstract class TodoGetListController: TodoControllerBase
+    public abstract class TodoGetListController: TodoJsonControllerBase
     {
         private readonly ILogger<TodoGetListController> _logger;
         private readonly IMediator _mediator;

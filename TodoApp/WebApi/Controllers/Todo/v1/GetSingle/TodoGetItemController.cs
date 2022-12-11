@@ -10,7 +10,7 @@ using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
 {
-    public abstract class TodoGetItemController: TodoControllerBase
+    public abstract class TodoGetItemController: TodoJsonControllerBase
     {
         private readonly ILogger<TodoGetItemController> _logger;
         private readonly IMediator _mediator;

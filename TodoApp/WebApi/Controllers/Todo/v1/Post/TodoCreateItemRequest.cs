@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.Post
 {
-    public class TodoItemPostRequest
+    public class TodoCreateItemRequest
     {
         [MaxLength(100)]
         [JsonPropertyName("description")]

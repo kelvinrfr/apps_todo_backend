@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1.Patch
+namespace TodoApp.WebApi.Controllers.Todo.v1.Put
 {
-    public class TodoItemPatchRequest
+    public class TodoPutItemRequest
     {
         [MaxLength(100)]
         [JsonPropertyName("description")]

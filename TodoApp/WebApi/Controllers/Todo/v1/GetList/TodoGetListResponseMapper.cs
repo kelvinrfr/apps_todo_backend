@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TodoApp.Domain.Todo;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
