@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Npgsql;
-using TodoApp.Data.Models;
+using TodoApp.Domain.Todo;
 
 namespace TodoApp.Data.Database
 {
@@ -49,6 +49,26 @@ namespace TodoApp.Data.Database
             _logger.LogDebug("using custom connection string as {0}", connection);
             optionsBuilder.UseNpgsql(connection);
             optionsBuilder.UseLoggerFactory(_loggerFactory);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TodoItem>(entity =>
+            {
+                entity.ToTable("todoitem");
+                entity.HasKey(t => t.Id);
+
+                entity.Property(o => o.Id)
+                    .HasColumnName("id");
+
+                entity.Property(o => o.Description)
+                    .HasColumnName("description")
+                    .HasMaxLength(100);
+
+                entity.Property(o => o.State)
+                    .HasColumnName("state");
+
+            });
         }
 
         public void Migrate()
