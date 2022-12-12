@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using TodoApp.Application.Services.Repositories;
 using TodoApp.Data.Database;
-using TodoApp.Domain.Todo;
 using TodoApp.Infrastructure.Database.Repository;
 
 namespace TodoApp.Infrastructure

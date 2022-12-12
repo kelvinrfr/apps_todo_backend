@@ -20,10 +20,10 @@ namespace TodoApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.RegisterApplicationDependencyInjection();
+            services.RegisterWebEntrypointDependencyInjection(Configuration);
             services.RegisterInfrastructureDependencyInjection();
 
-            services.RegisterWebEntrypointDependencyInjection(Configuration);
+            services.RegisterApplicationDependencyInjection();
 
             services.AddAutoMapper(typeof(Startup));
         }

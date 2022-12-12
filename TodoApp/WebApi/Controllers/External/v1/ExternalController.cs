@@ -1,7 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using TodoApp.WebApi.Configuration;
 
 namespace TodoApp.WebApi.Controllers.External.v1

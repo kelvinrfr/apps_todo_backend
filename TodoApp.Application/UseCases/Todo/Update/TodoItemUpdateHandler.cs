@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using TodoApp.Domain.Todo;
 using TodoApp.Application.Services.Repositories;
+using TodoApp.Domain.Todo;
 
 namespace TodoApp.Application.UseCases.Todo.Update
 {

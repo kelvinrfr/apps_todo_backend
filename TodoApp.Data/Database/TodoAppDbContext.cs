@@ -8,14 +8,14 @@ namespace TodoApp.Data.Database
 {
     public class TodoAppDbContext : DbContext
     {
-        private readonly ILogger<TodoAppDbContext> _logger; 
-        private readonly ILoggerFactory _loggerFactory; 
+        private readonly ILogger<TodoAppDbContext> _logger;
+        private readonly ILoggerFactory _loggerFactory;
         private readonly IConfiguration _configuration;
 
         public DbSet<TodoItem> TodoItems { get; set; }
 
         public TodoAppDbContext(
-            DbContextOptions<TodoAppDbContext> options, 
+            DbContextOptions<TodoAppDbContext> options,
             IConfiguration configuration,
             ILogger<TodoAppDbContext> logger,
             ILoggerFactory loggerFactory)
@@ -27,7 +27,7 @@ namespace TodoApp.Data.Database
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {            
+        {
             var connection = _configuration.GetConnectionString("TodoAppDbConnection");
             if (connection == null)
             {
@@ -44,7 +44,7 @@ namespace TodoApp.Data.Database
                 };
                 connection = connectionStringBuilder.ToString();
             }
-            
+
             _logger.LogDebug("using custom connection string as {0}", connection);
             optionsBuilder.UseNpgsql(connection);
             optionsBuilder.UseLoggerFactory(_loggerFactory);
@@ -80,7 +80,7 @@ namespace TodoApp.Data.Database
             catch (System.Exception ex)
             {
                 _logger.LogCritical(ex, "Problem occurred while running the migration check.");
-            }            
+            }
         }
     }
 }

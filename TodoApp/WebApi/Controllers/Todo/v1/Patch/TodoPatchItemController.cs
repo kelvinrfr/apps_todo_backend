@@ -1,10 +1,9 @@
-using System;
-using System.Net;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Update;
 using TodoApp.WebApi.Common;
 

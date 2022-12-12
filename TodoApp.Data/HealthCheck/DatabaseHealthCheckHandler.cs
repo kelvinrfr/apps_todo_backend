@@ -22,9 +22,9 @@ namespace TodoApp.Infrastructure.HealthCheck
 
         public Task<DatabaseState> Handle(DababaseHealthCheckRequest request, CancellationToken cancellationToken)
         {
-            if(_memoryCache.TryGetValue(_cacheKey, out var result)) 
+            if (_memoryCache.TryGetValue(_cacheKey, out var result))
             {
-                if(Enum.TryParse(result.ToString(), out DatabaseState dbResult))
+                if (Enum.TryParse(result.ToString(), out DatabaseState dbResult))
                 {
                     return Task.FromResult(dbResult);
                 }

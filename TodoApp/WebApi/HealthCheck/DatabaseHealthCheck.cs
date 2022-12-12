@@ -1,7 +1,7 @@
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Threading;
+using System.Threading.Tasks;
 using TodoApp.Infrastructure.HealthCheck;
 
 namespace TodoApp.WebApi.HealthCheck

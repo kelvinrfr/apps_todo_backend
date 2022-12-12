@@ -1,17 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.List;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
 {
-    public abstract class TodoGetListController: TodoJsonControllerBase
+    public abstract class TodoGetListController : TodoJsonControllerBase
     {
         private readonly ILogger<TodoGetListController> _logger;
         private readonly IMediator _mediator;

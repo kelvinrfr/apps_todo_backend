@@ -1,11 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using TodoApp.Application.Services.Repositories;
 using TodoApp.Data.Database;
 using TodoApp.Domain.Todo;
@@ -81,7 +81,7 @@ namespace TodoApp.Infrastructure.Database.Repository
             return true;
         }
 
-        public async Task<bool> UpdateStateAsync(long id, bool state, CancellationToken cancellation) 
+        public async Task<bool> UpdateStateAsync(long id, bool state, CancellationToken cancellation)
         {
             if (id == default)
             {
