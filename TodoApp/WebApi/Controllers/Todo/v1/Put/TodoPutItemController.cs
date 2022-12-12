@@ -1,18 +1,25 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TodoApp.Service;
+using TodoApp.Application.UseCases.Todo.Update;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.Put
 {
     public abstract class TodoPutItemController : TodoJsonControllerBase
     {
-        private readonly ILogger<TodoJsonControllerBase> _logger;
-        private readonly ITodoService _todoService;
+        private readonly ILogger<TodoPutItemController> _logger;
+        private readonly IMediator _mediator;
+
+        public TodoPutItemController(ILogger<TodoPutItemController> logger, IMediator mediator)
+        {
+            _logger = logger;
+            _mediator = mediator;
+        }
 
         /// <summary>
         /// Change state of a todo item
@@ -43,7 +50,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Put
             try
             {
                 _logger.LogDebug("Updating todo item '{id}'", id);
-                bool? result = await _todoService.UpdateAsync(id, request);
+                bool? result = await _mediator.Send(new TodoItemUpdateRequest(id, request.Description, request.State));
 
                 if (result == true)
                 {

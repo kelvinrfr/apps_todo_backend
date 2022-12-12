@@ -1,26 +1,25 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using TodoApp.Repository;
 using TodoApp.Domain.Todo;
+using TodoApp.Application.Services.Repositories;
 
-namespace TodoApp.Application.Todo.Create
+namespace TodoApp.Application.UseCases.Todo.Create
 {
     public record TodoItemCreateRequest(string Description) : IRequest<bool>;
 
-    internal class TodoItemCreateHandler : IRequestHandler<TodoItemCreateRequest, bool>
+    internal class TodoItemDeleteHandler : IRequestHandler<TodoItemCreateRequest, bool>
     {
-        private readonly ILogger<TodoItemCreateHandler> _logger;
-        private readonly ITodoRepository _store;
+        private readonly ILogger<TodoItemDeleteHandler> _logger;
+        private readonly ITodoItemRepository _repository;
 
-        public TodoItemCreateHandler(ILogger<TodoItemCreateHandler> logger, ITodoRepository store)
+        public TodoItemDeleteHandler(ILogger<TodoItemDeleteHandler> logger, ITodoItemRepository repository)
         {
             _logger = logger;
-            _store = store;
+            _repository = repository;
         }
 
         public async Task<bool> Handle(TodoItemCreateRequest request, CancellationToken cancellationToken)
         {
-            // TODO: cancellation token propagation
             if (request == null)
             {
                 _logger.LogError("Request item cannot be null");
@@ -33,7 +32,7 @@ namespace TodoApp.Application.Todo.Create
                 State = false
             };
 
-            var result = await _store.AddAsync(entity);
+            var result = await _repository.AddAsync(entity, cancellationToken);
             return result;
         }
     }

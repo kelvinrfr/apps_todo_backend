@@ -9,14 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp.Infrastructure", "T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDCAC7AD-CC40-4F52-98A0-E16B99AC6119}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Application", "TodoApp.Application\TodoApp.Application.csproj", "{EBE1BFC0-4B4D-491A-975D-70AD0B1EFC91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp.Application", "TodoApp.Application\TodoApp.Application.csproj", "{EBE1BFC0-4B4D-491A-975D-70AD0B1EFC91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Domain", "TodoApp.Domain\TodoApp.Domain.csproj", "{0717771C-FE22-4BBA-B34F-096611CE972D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp.Domain", "TodoApp.Domain\TodoApp.Domain.csproj", "{0717771C-FE22-4BBA-B34F-096611CE972D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

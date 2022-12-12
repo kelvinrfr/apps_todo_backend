@@ -1,10 +1,11 @@
 using System;
+using System.Net;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TodoApp.Application.UseCases.Todo.Update;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.Patch
@@ -13,13 +14,11 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Patch
     {
         private readonly ILogger<TodoPatchItemController> _logger;
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
 
-        public TodoPatchItemController(ILogger<TodoPatchItemController> logger, IMediator mediator, IMapper mapper)
+        public TodoPatchItemController(ILogger<TodoPatchItemController> logger, IMediator mediator)
         {
             _logger = logger;
             _mediator = mediator;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -51,18 +50,15 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Patch
             try
             {
                 _logger.LogDebug("Updating todo item '{id}' state to '{state}'", id, state);
-                bool? result = await _todoService.UpdateStateAsync(id, state);
+
+                var result = await _mediator.Send(new TodoItemUpdateStateRequest(id, state));
 
                 if (result == true)
                 {
                     _logger.LogDebug("Todo item '{id}' updated successfully", id);
                     return NoContent();
                 }
-                else if (result == null)
-                {
-                    _logger.LogDebug("Todo item not found with the given id '{id}'", id);
-                    return NotFound();
-                }
+
                 _logger.LogWarning("Didn't get an expected response from service.");
             }
             catch (Exception ex)

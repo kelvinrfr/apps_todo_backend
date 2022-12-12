@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TodoApp.Application.UseCases.Todo.Delete;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.Delete
@@ -13,13 +13,11 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Delete
     {
         private readonly ILogger<TodoDeleteItemController> _logger;
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
 
-        public TodoDeleteItemController(ILogger<TodoDeleteItemController> logger, IMediator mediator, IMapper mapper)
+        public TodoDeleteItemController(ILogger<TodoDeleteItemController> logger, IMediator mediator)
         {
             _logger = logger;
             _mediator = mediator;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -48,18 +46,14 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Delete
             try
             {
                 _logger.LogDebug("Deleting todo item '{id}'", id);
-                bool? result = await _todoService.DeleteAsync(id);
+                var result = await _mediator.Send(new TodoItemDeleteRequest(id));
 
                 if (result == true)
                 {
                     _logger.LogDebug("Todo item '{id}' deleted successfully", id);
                     return NoContent();
                 }
-                else if (result == null)
-                {
-                    _logger.LogDebug("Todo item not found with the given id '{id}'", id);
-                    return NotFound();
-                }
+
                 _logger.LogWarning("Didn't get an expected response from service.");
             }
             catch (Exception ex)

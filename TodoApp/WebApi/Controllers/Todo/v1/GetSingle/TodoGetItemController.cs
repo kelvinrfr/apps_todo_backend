@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TodoApp.Application.Todo.GetSingle;
+using TodoApp.Application.UseCases.Todo.Get;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle

@@ -9,7 +9,6 @@ namespace TodoApp.Application
         {
             // TODO: how to remove these framework dependencies from Application layer?
             services.AddMediatR(typeof(DependencyInjection));
-            services.AddAutoMapper(typeof(DependencyInjection));
         }
     }
 }

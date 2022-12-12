@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TodoApp.Domain.Todo;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
+namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
 {
     public class TodoGetListResponseMapper : Profile
     {

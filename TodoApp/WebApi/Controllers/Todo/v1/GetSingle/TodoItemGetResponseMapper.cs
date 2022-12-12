@@ -3,9 +3,9 @@ using TodoApp.Domain.Todo;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
 {
-    public class TodoGetItemMappers : Profile
+    public class TodoItemGetResponseMapper : Profile
     {
-        public TodoGetItemMappers()
+        public TodoItemGetResponseMapper()
         {
             CreateMap<TodoItem, TodoGetItemResponse>()
                 .IncludeBase<TodoItem, TodoItemResponseBase>();

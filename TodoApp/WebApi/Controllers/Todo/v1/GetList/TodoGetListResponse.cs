@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
+namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
 {
     public class TodoGetListItemResponse : TodoItemResponseBase
     { }

@@ -6,10 +6,8 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TodoApp.Application.Todo.ListItems;
-using TodoApp.Service;
+using TodoApp.Application.UseCases.Todo.List;
 using TodoApp.WebApi.Common;
-using TodoApp.WebApi.Controllers.Todo.v1.GetSingle;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
 {
@@ -42,7 +40,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
             {
                 _logger.LogDebug("Getting items with filter '{filter}'", filter);
 
-                IEnumerable<Domain.Todo.TodoItem> entities = await _mediator.Send(new TodoItemListItemsRequest(filter));
+                IEnumerable<Domain.Todo.TodoItem> entities = await _mediator.Send(new TodoItemListItemsByDescriptionRequest(filter));
 
                 var response = _mapper.Map<TodoGetListResponse>(entities);
 

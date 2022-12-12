@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TodoApp.Application.UseCases.Todo.Create;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.Post
@@ -13,13 +14,11 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Post
     {
         private readonly ILogger<TodoCreateItemController> _logger;
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
 
-        public TodoCreateItemController(ILogger<TodoCreateItemController> logger, IMediator mediator, IMapper mapper)
+        public TodoCreateItemController(ILogger<TodoCreateItemController> logger, IMediator mediator)
         {
             _logger = logger;
             _mediator = mediator;
-            _mapper = mapper;
         }
 
 
@@ -48,7 +47,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Post
             try
             {
                 _logger.LogDebug("Creating a todo item '{description}'", request.Description);
-                bool result = await _todoService.CreateAsync(request);
+                bool result = await _mediator.Send(new TodoItemCreateRequest(request.Description));
 
                 if (result)
                 {
