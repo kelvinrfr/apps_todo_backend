@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.List;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
 {
-    public abstract class TodoGetListController : TodoJsonControllerBase
+    public class TodoGetListController : TodoJsonControllerBase
     {
         private readonly ILogger<TodoGetListController> _logger;
         private readonly IMediator _mediator;
@@ -34,13 +35,13 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<TodoGetListItemResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get([FromQuery] string filter)
+        public async Task<IActionResult> Get([FromQuery] string filter, CancellationToken cancellationToken)
         {
             try
             {
                 _logger.LogDebug("Getting items with filter '{filter}'", filter);
 
-                IEnumerable<Domain.Todo.TodoItem> entities = await _mediator.Send(new TodoItemListItemsByDescriptionRequest(filter));
+                IEnumerable<Domain.Todo.TodoItem> entities = await _mediator.Send(new TodoItemListItemsByDescriptionRequest(filter), cancellationToken);
 
                 var response = _mapper.Map<TodoGetListResponse>(entities);
 

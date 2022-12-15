@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Get;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
 {
-    public abstract class TodoGetItemController : TodoJsonControllerBase
+    public class TodoGetItemController : TodoJsonControllerBase
     {
         private readonly ILogger<TodoGetItemController> _logger;
         private readonly IMediator _mediator;
@@ -39,7 +40,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get([FromRoute] long id)
+        public async Task<IActionResult> Get([FromRoute] long id, CancellationToken cancellationToken)
         {
             if (id <= 0)
             {
@@ -53,7 +54,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
             {
                 _logger.LogDebug("Getting item with id '{id}'", id);
 
-                var entity = await _mediator.Send(new TodoGetSingleItemByIdRequest(id));
+                var entity = await _mediator.Send(new TodoGetSingleItemByIdRequest(id), cancellationToken);
 
                 var response = _mapper.Map<TodoGetItemResponse>(entity);
 

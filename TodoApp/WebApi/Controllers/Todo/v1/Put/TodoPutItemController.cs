@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Update;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.Put
 {
-    public abstract class TodoPutItemController : TodoJsonControllerBase
+    public  class TodoPutItemController : TodoJsonControllerBase
     {
         private readonly ILogger<TodoPutItemController> _logger;
         private readonly IMediator _mediator;
@@ -37,7 +38,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Put
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Change([Required][FromRoute] long id, [FromBody] TodoPutItemRequest request)
+        public async Task<IActionResult> Change([Required][FromRoute] long id, [FromBody] TodoPutItemRequest request, CancellationToken cancellationToken)
         {
             if (id <= 0 || request == null || request.Description == null)
             {
@@ -50,7 +51,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Put
             try
             {
                 _logger.LogDebug("Updating todo item '{id}'", id);
-                bool? result = await _mediator.Send(new TodoItemUpdateRequest(id, request.Description, request.State));
+                bool? result = await _mediator.Send(new TodoItemUpdateRequest(id, request.Description, request.State), cancellationToken);
 
                 if (result == true)
                 {

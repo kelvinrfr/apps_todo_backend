@@ -5,9 +5,9 @@ using TodoApp.Domain.Todo;
 
 namespace TodoApp.Application.UseCases.Todo.List
 {
-    public record TodoItemListItemsByDescriptionRequest(string Description) : IRequest<IEnumerable<TodoItem>>;
+    public record TodoItemListItemsByDescriptionRequest(string Description) : IRequest<IReadOnlyList<TodoItem>>;
 
-    internal class TodoListItemsByDescriptionHandler : IRequestHandler<TodoItemListItemsByDescriptionRequest, IEnumerable<TodoItem>>
+    internal class TodoListItemsByDescriptionHandler : IRequestHandler<TodoItemListItemsByDescriptionRequest, IReadOnlyList<TodoItem>>
     {
         private readonly ILogger<TodoItemListItemsByDescriptionRequest> _logger;
         private readonly ITodoItemRepository _repository;
@@ -18,15 +18,17 @@ namespace TodoApp.Application.UseCases.Todo.List
             _repository = repository;
         }
 
-        public async Task<IEnumerable<TodoItem>> Handle(TodoItemListItemsByDescriptionRequest request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<TodoItem>> Handle(TodoItemListItemsByDescriptionRequest request, CancellationToken cancellationToken)
         {
             _logger.LogDebug("Fetching the list of items with the request {request}", request);
 
-            var todoItems = await _repository.ListAsync(todo =>
-                todo.Description != null && todo.Description.Contains(request.Description) == true,
-                cancellationToken);
+            if (request.Description != null)
+            {
+                return await _repository.ListAsync(todo => todo.Description!.Contains(request.Description) == true, cancellationToken);
+            }
 
-            return todoItems.AsEnumerable();
+            return await _repository.ListAsync(cancellationToken);
+
         }
     }
 }

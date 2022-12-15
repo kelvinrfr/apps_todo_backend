@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Create;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.Post
 {
-    public abstract class TodoCreateItemController : TodoJsonControllerBase
+    public class TodoCreateItemController : TodoJsonControllerBase
     {
         private readonly ILogger<TodoCreateItemController> _logger;
         private readonly IMediator _mediator;
@@ -33,7 +34,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Post
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Create([FromBody] TodoCreateItemRequest request)
+        public async Task<IActionResult> Create([FromBody] TodoCreateItemRequest request, CancellationToken cancellationToken)
         {
             if (request == null || string.IsNullOrWhiteSpace(request.Description))
             {
@@ -50,7 +51,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Post
 
                 if (result)
                 {
-                    _logger.LogDebug("Todo item '{description}' created successfully", request.Description);
+                    _logger.LogDebug("Todo item '{description}' created successfully", request.Description, cancellationToken);
                     return StatusCode(StatusCodes.Status201Created);
                 }
                 _logger.LogWarning("Didn't get an expected response from service.");

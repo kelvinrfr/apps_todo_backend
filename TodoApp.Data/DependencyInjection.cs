@@ -14,6 +14,8 @@ namespace TodoApp.Infrastructure
             services.AddScoped<ITodoItemRepository, TodoItemRepository>();
 
             services.AddMediatR(typeof(DependencyInjection));
+
+            services.AddMemoryCache();
         }
     }
 }

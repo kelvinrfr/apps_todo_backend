@@ -58,14 +58,14 @@ namespace TodoApp.Data.Database
                 entity.HasKey(t => t.Id);
 
                 entity.Property(o => o.Id)
-                    .HasColumnName("id");
+                    .HasColumnName("Id");
 
                 entity.Property(o => o.Description)
-                    .HasColumnName("description")
+                    .HasColumnName("Description")
                     .HasMaxLength(100);
 
                 entity.Property(o => o.State)
-                    .HasColumnName("state");
+                    .HasColumnName("State");
 
             });
         }

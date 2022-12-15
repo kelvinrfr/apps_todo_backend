@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Delete;
 using TodoApp.WebApi.Common;
 
 namespace TodoApp.WebApi.Controllers.Todo.v1.Delete
 {
-    public abstract class TodoDeleteItemController : TodoJsonControllerBase
+    public class TodoDeleteItemController : TodoJsonControllerBase
     {
         private readonly ILogger<TodoDeleteItemController> _logger;
         private readonly IMediator _mediator;
@@ -33,7 +34,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Delete
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Delete([FromRoute] long id)
+        public async Task<IActionResult> Delete([FromRoute] long id, CancellationToken cancellationToken)
         {
             if (id <= 0)
             {
@@ -46,7 +47,7 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Delete
             try
             {
                 _logger.LogDebug("Deleting todo item '{id}'", id);
-                var result = await _mediator.Send(new TodoItemDeleteRequest(id));
+                var result = await _mediator.Send(new TodoItemDeleteRequest(id), cancellationToken);
 
                 if (result == true)
                 {

@@ -32,13 +32,23 @@ namespace TodoApp.Infrastructure.Database.Repository
 
         public async Task<IReadOnlyList<TodoItem>> ListAsync(Expression<Func<TodoItem, bool>> predicate, CancellationToken cancellation)
         {
-            _logger.LogDebug("Getting items with filter '{filter}'", predicate.Body.ToString());
-            var query = _context.TodoItems
-                .AsNoTracking()
-                .AsQueryable()
-                .Where(predicate);
+            _logger.LogDebug("Getting items with filter '{filter}'", predicate?.Body.ToString());
+
+            var query = _context.TodoItems.AsNoTracking();
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
 
             return await query.ToListAsync(cancellation);
+        }
+
+        public async Task<IReadOnlyList<TodoItem>> ListAsync(CancellationToken cancellation)
+        {
+            _logger.LogDebug("Getting items with no filter");
+
+            return await ListAsync(null, cancellation);
         }
 
         public async Task<bool> AddAsync(TodoItem entity, CancellationToken cancellation)
