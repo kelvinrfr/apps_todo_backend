@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
 
 COPY TodoApp/TodoApp.csproj ./TodoApp/
-COPY TodoApp.Data/TodoApp.Data.csproj ./TodoApp.Data/
+COPY TodoApp.Infrastructure/TodoApp.Infrastructure.csproj ./TodoApp.Infrastructure/
 COPY TodoApp.sln ./
 RUN dotnet restore TodoApp.sln
 
