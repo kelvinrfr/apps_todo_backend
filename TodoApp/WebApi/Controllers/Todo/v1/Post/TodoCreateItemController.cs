@@ -47,11 +47,11 @@ namespace TodoApp.WebApi.Controllers.Todo.v1.Post
             try
             {
                 _logger.LogDebug("Creating a todo item '{description}'", request.Description);
-                bool result = await _mediator.Send(new TodoItemCreateRequest(request.Description));
+                bool result = await _mediator.Send(new TodoItemCreateRequest(request.Description), cancellationToken);
 
                 if (result)
                 {
-                    _logger.LogDebug("Todo item '{description}' created successfully", request.Description, cancellationToken);
+                    _logger.LogDebug("Todo item '{description}' created successfully", request.Description);
                     return StatusCode(StatusCodes.Status201Created);
                 }
                 _logger.LogWarning("Didn't get an expected response from service.");
