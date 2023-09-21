@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using TodoApp.Configuration;
-using TodoApp.Web.Controllers.v1.External;
+using TodoApp.Application;
+using TodoApp.Infrastructure;
+using TodoApp.WebApi;
 
 namespace TodoApp
 {
@@ -20,18 +20,12 @@ namespace TodoApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddHttpClient<ExternalController>();
-            
-            var todoAppConfiguration = new TodoAppConfiguration();
-            Configuration.Bind(todoAppConfiguration);
-            services.AddSingleton(todoAppConfiguration);
+            services.RegisterWebEntrypointDependencyInjection(Configuration);
+            services.RegisterInfrastructureDependencyInjection();
 
-            services.ConfigureHealthChecks();
-            services.ConfigureSwagger();
-            services.ConfigureCors(todoAppConfiguration);
-            services.ConfigureDataProviders();
-            services.ConfigureBusinessServices();
+            services.RegisterApplicationDependencyInjection();
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
