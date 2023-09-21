@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp.Application", "Todo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp.Domain", "TodoApp.Domain\TodoApp.Domain.csproj", "{0717771C-FE22-4BBA-B34F-096611CE972D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8A196B28-AF56-4B42-8EE3-2072E3C5863E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E960AACA-C5E3-427B-A0DF-F060936F28A1} = {8A196B28-AF56-4B42-8EE3-2072E3C5863E}
+		{D1EE8E34-36B5-4AE2-8B57-C4547FD04CE5} = {8A196B28-AF56-4B42-8EE3-2072E3C5863E}
+		{EBE1BFC0-4B4D-491A-975D-70AD0B1EFC91} = {8A196B28-AF56-4B42-8EE3-2072E3C5863E}
+		{0717771C-FE22-4BBA-B34F-096611CE972D} = {8A196B28-AF56-4B42-8EE3-2072E3C5863E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEB27A2B-39CA-47A3-A6B6-038C523FCC72}
