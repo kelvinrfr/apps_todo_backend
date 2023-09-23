@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.List;
-using TodoApp.WebApi.Common;
+using TodoApp.Api.Http.WebApi.Common;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1.GetList
+namespace TodoApp.Api.Http.WebApi.Controllers.Todo.v1.GetList
 {
     public class TodoGetListController : TodoJsonControllerBase
     {

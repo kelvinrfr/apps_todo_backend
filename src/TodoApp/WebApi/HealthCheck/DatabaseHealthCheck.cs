@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Infrastructure.HealthCheck;
 
-namespace TodoApp.WebApi.HealthCheck
+namespace TodoApp.Api.Http.WebApi.HealthCheck
 {
     public class DatabaseHealthCheck : IHealthCheck
     {

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1
+namespace TodoApp.Api.Http.WebApi.Controllers.Todo.v1
 {
     public abstract class TodoItemResponseBase
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using TodoApp.Domain.Todo;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1.GetSingle
+namespace TodoApp.Api.Http.WebApi.Controllers.Todo.v1.GetSingle
 {
     public class TodoItemResponseBaseMapper : Profile
     {

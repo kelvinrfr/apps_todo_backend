@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp.Domain", "src\TodoA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp.Application", "src\TodoApp.Application\TodoApp.Application.csproj", "{766E2036-3D91-4F80-8520-FDA59B6F6C93}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp", "src\TodoApp\TodoApp.csproj", "{7276C8BB-CAFB-4744-B7E2-DE525D21525B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp.Api.Http", "src\TodoApp\TodoApp.Api.Http.csproj", "{7276C8BB-CAFB-4744-B7E2-DE525D21525B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "entrypoint", "entrypoint", "{3ED07431-1657-4347-9916-A49332BFA610}"
 EndProject

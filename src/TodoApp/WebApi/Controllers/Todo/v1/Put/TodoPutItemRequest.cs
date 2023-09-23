@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1.Put
+namespace TodoApp.Api.Http.WebApi.Controllers.Todo.v1.Put
 {
     public class TodoPutItemRequest
     {

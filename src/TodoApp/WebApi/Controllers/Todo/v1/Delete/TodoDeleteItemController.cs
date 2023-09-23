@@ -6,9 +6,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Delete;
-using TodoApp.WebApi.Common;
+using TodoApp.Api.Http.WebApi.Common;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1.Delete
+namespace TodoApp.Api.Http.WebApi.Controllers.Todo.v1.Delete
 {
     public class TodoDeleteItemController : TodoJsonControllerBase
     {

@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using TodoApp.WebApi.Configuration;
+using TodoApp.Api.Http.WebApi.Configuration;
 
-namespace TodoApp.WebApi.Controllers.External.v1
+namespace TodoApp.Api.Http.WebApi.Controllers.External.v1
 {
     [ApiController]
     [Route("v1/external")]

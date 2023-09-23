@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TodoApp.Application;
+using TodoApp.Api.Http.WebApi;
 using TodoApp.Infrastructure;
-using TodoApp.WebApi;
+using TodoApp.Application;
 
-namespace TodoApp
+namespace TodoApp.Api.Http
 {
-    public class Startup
+	public class Startup
     {
         public Startup(IConfiguration configuration)
         {

@@ -1,4 +1,4 @@
-namespace TodoApp.WebApi.Configuration
+namespace TodoApp.Api.Http.WebApi.Configuration
 {
     public class TodoAppConfiguration
     {

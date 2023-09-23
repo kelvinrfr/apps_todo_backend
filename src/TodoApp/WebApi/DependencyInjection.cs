@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using TodoApp.WebApi.Configuration;
-using TodoApp.WebApi.Controllers.External.v1;
-using TodoApp.WebApi.HealthCheck;
+using TodoApp.Api.Http.WebApi.Configuration;
+using TodoApp.Api.Http.WebApi.Controllers.External.v1;
+using TodoApp.Api.Http.WebApi.HealthCheck;
 
-namespace TodoApp.WebApi
+namespace TodoApp.Api.Http.WebApi
 {
     public static class DependencyInjection
     {

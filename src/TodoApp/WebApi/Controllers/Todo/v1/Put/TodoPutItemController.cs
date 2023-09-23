@@ -7,9 +7,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Update;
-using TodoApp.WebApi.Common;
+using TodoApp.Api.Http.WebApi.Common;
 
-namespace TodoApp.WebApi.Controllers.Todo.v1.Put
+namespace TodoApp.Api.Http.WebApi.Controllers.Todo.v1.Put
 {
     public  class TodoPutItemController : TodoJsonControllerBase
     {

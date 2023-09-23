@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TodoApp.Data.Database;
 
-namespace TodoApp
+namespace TodoApp.Api.Http
 {
-    public class Program
+	public class Program
     {
         public static void Main(string[] args)
         {

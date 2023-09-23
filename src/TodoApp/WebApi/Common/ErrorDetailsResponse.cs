@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace TodoApp.WebApi.Common
+namespace TodoApp.Api.Http.WebApi.Common
 {
     public class ErrorDetailsResponse
     {
