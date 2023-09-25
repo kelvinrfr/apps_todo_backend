@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using TodoApp.Api.Http.WebApi.Configuration;
-using TodoApp.Api.Http.WebApi.Controllers.External.v1;
 using TodoApp.Api.Http.WebApi.HealthCheck;
 
 namespace TodoApp.Api.Http.WebApi
@@ -12,7 +11,6 @@ namespace TodoApp.Api.Http.WebApi
         public static void RegisterWebEntrypointDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
-            services.AddHttpClient<ExternalController>();
 
             var todoAppConfiguration = new TodoAppConfiguration();
             configuration.Bind(todoAppConfiguration);
