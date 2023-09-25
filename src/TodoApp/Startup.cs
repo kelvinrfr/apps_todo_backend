@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TodoApp.Api.Http.WebApi;
 using TodoApp.Infrastructure;
 using TodoApp.Application;
 
