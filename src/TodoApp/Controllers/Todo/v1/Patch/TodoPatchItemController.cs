@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Update;
 using TodoApp.Api.Http.Common;
+using System.Net;
 
 namespace TodoApp.Api.Http.Controllers.Todo.v1.Patch
 {
@@ -41,10 +42,17 @@ namespace TodoApp.Api.Http.Controllers.Todo.v1.Patch
 		{
 			if (id <= 0)
 			{
-				return BadRequest(new ErrorDetailsResponse
+				var problem = new ProblemDetails()
 				{
-					Error = "Id should be greater than zero."
-				});
+					Type = "https://example.com/problems/id-less-than-zero",
+					Status = (int)HttpStatusCode.UnprocessableEntity,
+					Title = "Id should be greater than zero.",
+					Detail = $"The Id provided ´{id}´ should be greater than zero."
+				};
+
+				problem.Extensions.Add(nameof(id), id);
+
+				return UnprocessableEntity(problem);
 			}
 
 			try
