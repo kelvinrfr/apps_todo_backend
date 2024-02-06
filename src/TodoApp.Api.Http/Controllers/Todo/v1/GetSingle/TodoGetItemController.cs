@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Get;
 using TodoApp.Api.Http.Common;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TodoApp.Api.Http.Controllers.Todo.v1.GetSingle
 {
@@ -36,6 +37,7 @@ namespace TodoApp.Api.Http.Controllers.Todo.v1.GetSingle
 		/// <response code="500">Unexpected error</response>
 		[HttpGet]
 		[Route("{id}")]
+		[SwaggerOperation(Tags = [V1TodoTag])]
 		[ProducesResponseType(typeof(TodoGetItemResponse), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status400BadRequest)]

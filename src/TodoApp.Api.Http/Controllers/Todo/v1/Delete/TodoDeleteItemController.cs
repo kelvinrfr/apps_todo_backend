@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Delete;
 using TodoApp.Api.Http.Common;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TodoApp.Api.Http.Controllers.Todo.v1.Delete
 {
@@ -31,6 +32,7 @@ namespace TodoApp.Api.Http.Controllers.Todo.v1.Delete
 		/// <response code="500">Unexpected error</response>
 		[HttpDelete]
 		[Route("{id}")]
+		[SwaggerOperation(Tags = [V1TodoTag])]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]

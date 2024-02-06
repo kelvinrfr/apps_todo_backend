@@ -19,9 +19,9 @@ namespace TodoApp.Api.Http
 			services.AddHealthChecks()
 				.AddCheck<DatabaseHealthCheck>(nameof(DatabaseHealthCheck));
 
-			// TODO: Fix the organization of Endpoints on Swagger view
 			services.AddSwaggerGen(c =>
 			{
+				c.EnableAnnotations();
 				c.SwaggerDoc("v1", new OpenApiInfo
 				{
 					Version = "v1",
