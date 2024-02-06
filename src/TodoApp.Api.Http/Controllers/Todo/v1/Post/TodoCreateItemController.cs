@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.Create;
 using TodoApp.Api.Http.Common;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TodoApp.Api.Http.Controllers.Todo.v1.Post
 {
@@ -31,6 +32,7 @@ namespace TodoApp.Api.Http.Controllers.Todo.v1.Post
 		/// <response code="400">Request has is not valid with the given parameters</response>
 		/// <response code="500">Unexpected error</response>
 		[HttpPost]
+		[SwaggerOperation(Tags = [V1TodoTag])]
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]

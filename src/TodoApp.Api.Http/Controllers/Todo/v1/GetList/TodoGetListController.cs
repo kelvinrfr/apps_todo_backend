@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TodoApp.Application.UseCases.Todo.List;
 using TodoApp.Api.Http.Common;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TodoApp.Api.Http.Controllers.Todo.v1.GetList
 {
@@ -33,6 +34,7 @@ namespace TodoApp.Api.Http.Controllers.Todo.v1.GetList
 		/// <response code="200">Returns the list of todo items</response>
 		/// <response code="500">Unexpected error</response>
 		[HttpGet]
+		[SwaggerOperation(Tags = [V1TodoTag])]
 		[ProducesResponseType(typeof(IEnumerable<TodoGetListItemResponse>), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ErrorDetailsResponse), StatusCodes.Status500InternalServerError)]
 		public async Task<IActionResult> Get([FromQuery] string filter, CancellationToken cancellationToken)
